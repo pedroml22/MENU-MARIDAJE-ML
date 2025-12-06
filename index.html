@@ -1,21 +1,297 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú</title>
-    <style>
-        body { font-family: Arial; padding: 20px; background: #fafafa; }
-        h1 { text-align: center; }
-        .item { margin: 15px 0; padding-bottom: 10px; border-bottom: 1px solid #ddd; font-size: 1.2em; }
-        .precio { float: right; font-weight: bold; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menú Maridaje ML</title>
+
+<!-- FUENTES ELEGANTES -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=EB+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ---------------- GLOBAL ---------------- */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "EB Garamond", serif;
+    overflow-x: hidden;
+
+    /* FONDO NAVIDEÑO MEJORADO */
+    background: url("https://i.imgur.com/4xw9s2E.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* ---------------- PANTALLA DE BIENVENIDA ---------------- */
+
+#welcome-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+    color: white;
+    text-align: center;
+    animation: fadeIn 1.5s ease;
+}
+
+#welcome-screen h1 {
+    font-family: "Great Vibes", cursive;
+    font-size: 4em;
+    margin-bottom: 20px;
+}
+
+#welcome-screen button {
+    font-size: 1.3em;
+    padding: 12px 22px;
+    border-radius: 10px;
+    border: none;
+    background: #b30000;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#welcome-screen button:hover {
+    background: #e60000;
+    transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ---------------- CONTENIDO PRINCIPAL ---------------- */
+
+#content {
+    display: none;
+    opacity: 0;
+    animation: showMenu 1.2s ease forwards;
+}
+
+@keyframes showMenu {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------- LAYOUT ---------------- */
+
+.page-layout {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 0;
+}
+
+/* ---------------- PUBLICIDAD ---------------- */
+
+.sidebar {
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ad-box {
+    width: 100%;
+    height: 200px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: transparent;
+
+    box-shadow: 0px 6px 22px rgba(0,0,0,0.25);
+
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeInBox 1s ease forwards;
+}
+
+@keyframes fadeInBox {
+    from { opacity: 0; transform: translateY(25px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.ad-box img,
+.ad-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  /* << IMÁGENES COMPLETAS */
+    background: black;
+    border-radius: 16px;
+    transition: filter 0.4s ease;
+}
+
+.ad-box:hover img,
+.ad-box:hover video {
+    filter: brightness(1.1);
+}
+
+/* ---------------- MENÚ CENTRAL ---------------- */
+
+.menu-container {
+    position: relative;
+    max-width: 480px;
+    text-align: center;
+    padding: 35px;
+    background: rgba(255,255,255,0.93);
+    border-radius: 20px;
+    box-shadow: 0 0 22px rgba(0,0,0,0.55);
+}
+
+/* CAMPANITAS ANIMADAS */
+.bell {
+    position: absolute;
+    width: 70px;
+    animation: swing 2.5s ease-in-out infinite;
+    opacity: 0.9;
+    z-index: 20;
+}
+
+.bell.top-left     { top: -10px; left: -10px; }
+.bell.top-right    { top: -10px; right: -10px; }
+.bell.bottom-left  { bottom: -10px; left: -10px; }
+.bell.bottom-right { bottom: -10px; right: -10px; }
+
+@keyframes swing {
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(6deg); }
+    50%  { transform: rotate(0deg); }
+    75%  { transform: rotate(-6deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* TITULOS */
+
+h1 {
+    font-family: "Great Vibes", cursive;
+    font-size: 3.4em;
+    color: #b30000;
+    margin: 0;
+}
+
+.subtitulo {
+    font-size: 1.3em;
+    color: #2e6b2e;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: #b30000;
+}
+
+.icon {
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+.divider {
+    width: 80px;
+    opacity: 0.7;
+    margin: 25px auto;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+@media (max-width: 900px) {
+    .page-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+    .sidebar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: center;
+    }
+    .ad-box {
+        width: 38%;
+        height: 120px;
+    }
+}
+
+</style>
 </head>
 <body>
-    <h1>Menú</h1>
 
-    <div class="item">Café <span class="precio">1.20 €</span></div>
-    <div class="item">Bocadillo <span class="precio">3.50 €</span></div>
-    <div class="item">Tostada <span class="precio">2.00 €</span></div>
+<!-- 🌟 PANTALLA DE BIENVENIDA -->
+<div id="welcome-screen">
+    <h1>Menú Maridaje ML</h1>
+    <button onclick="startMenu()">Entrar al menú</button>
+</div>
+
+<script>
+function startMenu() {
+    document.getElementById("welcome-screen").style.display = "none";
+    document.getElementById("content").style.display = "block";
+}
+</script>
+
+
+<!-- CONTENIDO -->
+<div id="content">
+
+<div class="page-layout">
+
+    <!-- PUBLICIDAD IZQUIERDA -->
+    <div class="sidebar">
+        <div class="ad-box"><img src="foto1.jpg"></div>
+        <div class="ad-box"><video src="video1.mp4" autoplay loop muted></video></div>
+        <div class="ad-box"><img src="foto2.jpg"></div>
+        <div class="ad-box"><img src="foto3.jpg"></div>
+    </div>
+
+    <!-- MENÚ CENTRAL -->
+    <div class="menu-container">
+
+        <!-- CAMPANITAS NUEVAS (FUNCIONAN) -->
+        <img class="bell top-left"     src="https://i.imgur.com/yJk2m68.png">
+        <img class="bell top-right"    src="https://i.imgur.com/yJk2m68.png">
+        <img class="bell bottom-left"  src="https://i.imgur.com/yJk2m68.png">
+        <img class="bell bottom-right" src="https://i.imgur.com/yJk2m68.png">
+
+        <h1>Menú Maridaje ML</h1>
+        <div class="subtitulo">Una experiencia navideña</div>
+
+        <img class="divider" src="URL_DEL_ICONO">
+
+        <h2>Primer tiempo</h2>
+        <img class="icon" src="URL_ICONO_ASIA">
+        <p class="plato">Delicias de Asia</p>
+        <p class="maridaje">cava rosado</p>
+
+        <img class="divider" src="URL_DEL_ICONO">
+
+        <h2>Segundo tiempo</h2>
+        <img class="icon" src="URL_ICONO_COCIDO">
+        <p class="plato">Cocido en tres partes</p>
+        <p class="maridaje">cava blanco</p>
+
+        <img class="divider" src="URL_DEL_ICONO">
+
+        <h2>Tercer tiempo</h2>
+        <img class="icon" src="URL_ICONO_ROSCON">
+        <p class="plato">Roscón</p>
+        <p class="maridaje">vino</p>
+
+    </div>
+
+    <!-- PUBLICIDAD DERECHA -->
+    <div class="sidebar">
+        <div class="ad-box"><img src="foto4.jpg"></div>
+        <div class="ad-box"><img src="foto5.jpg"></div>
+        <div class="ad-box"><video src="video2.mp4" autoplay loop muted></video></div>
+        <div class="ad-box"><img src="foto6.jpg"></div>
+    </div>
+
+</div>
+</div>
+
 </body>
 </html>
