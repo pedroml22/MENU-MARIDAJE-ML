@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Menú Maridaje ML</title>
 
-<!-- FUENTES ELEGANTES -->
+<!-- FUENTES -->
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=EB+Garamond:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 
-/* ---------------- GLOBAL ---------------- */
+/* ---------- FONDO NAVIDEÑO ---------- */
 
 body {
     margin: 0;
@@ -18,17 +18,15 @@ body {
     font-family: "EB Garamond", serif;
     overflow-x: hidden;
 
-    /* FONDO NAVIDEÑO MEJORADO */
-    background: url("https://i.imgur.com/4xw9s2E.jpg") no-repeat center center fixed;
+    background: url("fondoRojo.png") no-repeat center center fixed;
     background-size: cover;
 }
 
-/* ---------------- PANTALLA DE BIENVENIDA ---------------- */
+/* ---------- PANTALLA DE BIENVENIDA ---------- */
 
 #welcome-screen {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    inset: 0;
     background: rgba(0,0,0,0.75);
     backdrop-filter: blur(4px);
     display: flex;
@@ -68,7 +66,7 @@ body {
     to   { opacity: 1; }
 }
 
-/* ---------------- CONTENIDO PRINCIPAL ---------------- */
+/* ---------- CONTENIDO AL CARGAR ---------- */
 
 #content {
     display: none;
@@ -81,7 +79,7 @@ body {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ---------------- LAYOUT ---------------- */
+/* ---------- ESTRUCTURA ---------- */
 
 .page-layout {
     display: flex;
@@ -90,7 +88,7 @@ body {
     padding: 40px 0;
 }
 
-/* ---------------- PUBLICIDAD ---------------- */
+/* ---------- PUBLICIDAD ---------- */
 
 .sidebar {
     width: 160px;
@@ -104,12 +102,10 @@ body {
     height: 200px;
     border-radius: 16px;
     overflow: hidden;
-    background: transparent;
 
+    background: transparent;
     box-shadow: 0px 6px 22px rgba(0,0,0,0.25);
 
-    opacity: 1;
-    transform: translateY(0);
     animation: fadeInBox 1s ease forwards;
 }
 
@@ -122,7 +118,7 @@ body {
 .ad-box video {
     width: 100%;
     height: 100%;
-    object-fit: contain;  /* << IMÁGENES COMPLETAS */
+    object-fit: contain; 
     background: black;
     border-radius: 16px;
     transition: filter 0.4s ease;
@@ -133,7 +129,7 @@ body {
     filter: brightness(1.1);
 }
 
-/* ---------------- MENÚ CENTRAL ---------------- */
+/* ---------- MENÚ CENTRAL ---------- */
 
 .menu-container {
     position: relative;
@@ -145,13 +141,12 @@ body {
     box-shadow: 0 0 22px rgba(0,0,0,0.55);
 }
 
-/* CAMPANITAS ANIMADAS */
+/* CAMPANAS ANIMADAS */
 .bell {
     position: absolute;
     width: 70px;
     animation: swing 2.5s ease-in-out infinite;
     opacity: 0.9;
-    z-index: 20;
 }
 
 .bell.top-left     { top: -10px; left: -10px; }
@@ -167,7 +162,7 @@ body {
     100% { transform: rotate(0deg); }
 }
 
-/* TITULOS */
+/* ---------- TIPOGRAFÍA ---------- */
 
 h1 {
     font-family: "Great Vibes", cursive;
@@ -187,7 +182,7 @@ h2 {
 }
 
 .icon {
-    width: 50px;
+    width: 60px;
     margin-bottom: 10px;
 }
 
@@ -197,7 +192,7 @@ h2 {
     margin: 25px auto;
 }
 
-/* ---------------- RESPONSIVE ---------------- */
+/* ---------- RESPONSIVE ---------- */
 
 @media (max-width: 900px) {
     .page-layout {
@@ -220,7 +215,7 @@ h2 {
 </head>
 <body>
 
-<!-- 🌟 PANTALLA DE BIENVENIDA -->
+<!-- PANTALLA DE BIENVENIDA -->
 <div id="welcome-screen">
     <h1>Menú Maridaje ML</h1>
     <button onclick="startMenu()">Entrar al menú</button>
@@ -233,7 +228,6 @@ function startMenu() {
 }
 </script>
 
-
 <!-- CONTENIDO -->
 <div id="content">
 
@@ -242,15 +236,15 @@ function startMenu() {
     <!-- PUBLICIDAD IZQUIERDA -->
     <div class="sidebar">
         <div class="ad-box"><img src="foto1.jpg"></div>
-        <div class="ad-box"><video src="videoplayback.mp4" autoplay loop muted></video></div>
-        <div class="ad-box"><img src="foto2.jpg"></div>
-        <div class="ad-box"><img src="foto3.jpg"></div>
+        <div class="ad-box"><video src="videoplayback2.mp4" autoplay loop muted></video></div>
+        <div class="ad-box"><img src="asia.png"></div>
+        <div class="ad-box"><img src="roscon.png"></div>
     </div>
 
     <!-- MENÚ CENTRAL -->
     <div class="menu-container">
 
-        <!-- CAMPANITAS NUEVAS (FUNCIONAN) -->
+        <!-- CAMPANAS (FUNCIONAN LOCAL + GITHUB) -->
         <img class="bell top-left"     src="Campanas.png">
         <img class="bell top-right"    src="Campanas.png">
         <img class="bell bottom-left"  src="Campanas.png">
@@ -259,21 +253,21 @@ function startMenu() {
         <h1>Menú Maridaje ML</h1>
         <div class="subtitulo">Una experiencia navideña</div>
 
-        <img class="divider" src="URL_DEL_ICONO">
+        <img class="divider" src="asia.png">
 
         <h2>Primer tiempo</h2>
         <img class="icon" src="asia.png">
         <p class="plato">Delicias de Asia</p>
         <p class="maridaje">cava rosado</p>
 
-        <img class="divider" src="URL_DEL_ICONO">
+        <img class="divider" src="roscon.png">
 
         <h2>Segundo tiempo</h2>
-        <img class="icon" src="URL_ICONO_COCIDO">
+        <img class="icon" src="roscon.png">
         <p class="plato">Cocido en tres partes</p>
         <p class="maridaje">cava blanco</p>
 
-        <img class="divider" src="URL_DEL_ICONO">
+        <img class="divider" src="roscon.png">
 
         <h2>Tercer tiempo</h2>
         <img class="icon" src="roscon.png">
@@ -284,10 +278,10 @@ function startMenu() {
 
     <!-- PUBLICIDAD DERECHA -->
     <div class="sidebar">
-        <div class="ad-box"><img src="foto4.jpg"></div>
-        <div class="ad-box"><img src="foto5.jpg"></div>
-        <div class="ad-box"><video src="video2.mp4" autoplay loop muted></video></div>
-        <div class="ad-box"><img src="foto6.jpg"></div>
+        <div class="ad-box"><img src="foto1.jpg"></div>
+        <div class="ad-box"><img src="asia.png"></div>
+        <div class="ad-box"><video src="videoplayback2.mp4" autoplay loop muted></video></div>
+        <div class="ad-box"><img src="roscon.png"></div>
     </div>
 
 </div>
