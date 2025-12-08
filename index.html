@@ -18,7 +18,8 @@ body {
     font-family: "EB Garamond", serif;
     overflow-x: hidden;
 
-    background: url("fondoRojo.png") no-repeat center center fixed;
+    background: linear-gradient(180deg, #8b0000, #b30000, #c91c1c, #8b0000),
+                url("fondoRojo.png") no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -32,7 +33,7 @@ body {
     pointer-events: none;
     animation: snowfall linear infinite;
     opacity: 0.9;
-    z-index: 0 !important; /* SIEMPRE DETRÁS DEL CONTENIDO */
+    z-index: 0 !important; 
 }
 
 @keyframes snowfall {
@@ -63,6 +64,7 @@ body {
     margin-bottom: 25px;
 }
 
+/* BOTÓN CON BRILLO SUAVE */
 #welcome-screen button {
     font-size: 1.5em;
     padding: 16px 30px;
@@ -72,6 +74,14 @@ body {
     color: white;
     cursor: pointer;
     transition: 0.3s;
+    box-shadow: 0 0 12px rgba(255,255,255,0.3);
+    animation: glow 2.4s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%   { box-shadow: 0 0 8px rgba(255,255,255,0.2); }
+    50%  { box-shadow: 0 0 16px rgba(255,255,255,0.4); }
+    100% { box-shadow: 0 0 8px rgba(255,255,255,0.2); }
 }
 
 #welcome-screen button:hover {
@@ -84,20 +94,20 @@ body {
     to   { opacity: 1; }
 }
 
-/* ---------- CONTENIDO AL CARGAR ---------- */
+/* ---------- TRANSICIÓN DEL MENÚ (CORTINA) ---------- */
 
 #content {
     display: none;
     opacity: 0;
-    animation: fadeSlide 0.8s ease forwards;
+    animation: curtain 0.9s ease forwards;
 }
 
-@keyframes fadeSlide {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
+@keyframes curtain {
+    0%   { opacity: 0; transform: translateY(-40px) scale(0.98); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* ---------- ESTRUCTURA GENERAL ---------- */
+/* ---------- ESTRUCTURA ---------- */
 
 .page-layout {
     display: flex;
@@ -106,7 +116,7 @@ body {
     padding: 40px 0;
 }
 
-/* ---------- PUBLICIDAD (SOLO EN PC) ---------- */
+/* ---------- PUBLICIDAD (SOLO PC) ---------- */
 
 .sidebar {
     width: 160px;
@@ -129,8 +139,8 @@ body {
 }
 
 @keyframes fadeInBox {
-    from { opacity: 0; transform: translateY(25px); }
-    to   { opacity: 1; transform: translateY(0); }
+    0% { opacity: 0; transform: translateY(25px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 .ad-box img,
@@ -140,7 +150,7 @@ body {
     object-fit: cover;
     opacity: 0.85;
     filter: saturate(0.9);
-    transition: opacity 0.4s ease, filter 0.4s ease;
+    transition: 0.4s;
 }
 
 .ad-box:hover img,
@@ -156,9 +166,12 @@ body {
     z-index: 10;
     max-width: 90%;
     text-align: center;
-    padding: 25px;
+    padding: 28px;
     background: rgba(255,255,255,0.92);
     border-radius: 20px;
+
+    border: 3px solid rgba(179,0,0,0.75); /* borde navideño rojo */
+
     box-shadow: 0 0 22px rgba(0,0,0,0.55);
     margin: 0 10px;
 }
@@ -171,10 +184,11 @@ body {
 }
 
 /* ---------- DIVIDER ---------- */
+
 .divider {
     width: 80px;
     height: 2px;
-    background: rgba(179,0,0,0.5);
+    background: rgba(179,0,0,0.55);
     border-radius: 2px;
     margin: 25px auto;
 }
@@ -198,16 +212,25 @@ h2 {
     color: #b30000;
 }
 
+/* ---------- FOOTER MANUSCRITO ---------- */
+
+footer {
+    margin-top: 35px;
+    font-family: "Great Vibes", cursive;
+    font-size: 1.8em;
+    color: white;
+    text-align: center;
+    text-shadow: 0 0 10px black;
+}
+
 /* ---------- MEJORAS MÓVIL ---------- */
 
 @media (max-width: 700px) {
 
-    .sidebar {
-        display: none; /* OCULTAMOS PUBLICIDAD EN MÓVIL */
-    }
+    .sidebar { display: none; }
 
-    h1 { font-size: 2.5em; }
-    h2 { font-size: 1.5em; }
+    h1 { font-size: 2.4em; }
+    h2 { font-size: 1.4em; }
     .icon { width: 70px; }
 
     .menu-container {
@@ -220,7 +243,7 @@ h2 {
 </head>
 <body>
 
-<!-- PANTALLA DE BIENVENIDA -->
+<!-- ---------- PANTALLA DE BIENVENIDA ---------- -->
 <div id="welcome-screen">
     <h1>Menú Maridaje ML</h1>
     <button onclick="startMenu()">Entrar al menú</button>
@@ -233,12 +256,12 @@ function startMenu() {
 }
 </script>
 
-<!-- CONTENIDO -->
+<!-- ---------- CONTENIDO ---------- -->
 <div id="content">
 
 <div class="page-layout">
 
-    <!-- SIDEBAR IZQUIERDO VACÍO -->
+    <!-- SIDEBAR IZQUIERDO -->
     <div class="sidebar"></div>
 
     <!-- MENÚ CENTRAL -->
@@ -273,9 +296,11 @@ function startMenu() {
 
         <div class="divider"></div>
 
+        <footer>Con cariño, ML 🎄✨</footer>
+
     </div>
 
-    <!-- PUBLICIDAD DERECHA (SOLO PC) -->
+    <!-- SIDEBAR DERECHO SOLO EN PC -->
     <div class="sidebar">
         <div class="ad-box"><img src="foto1.jpg"></div>
         <div class="ad-box"><video src="videoplayback2.mp4" autoplay loop muted></video></div>
@@ -286,7 +311,7 @@ function startMenu() {
 </div>
 </div>
 
-<!-- COPOS DE NIEVE SCRIPT -->
+<!-- ---------- COPOS DE NIEVE ---------- -->
 <script>
 function createSnowflakes() {
     for (let i = 0; i < 40; i++) {
@@ -302,7 +327,6 @@ function createSnowflakes() {
         document.body.appendChild(snow);
     }
 }
-
 createSnowflakes();
 </script>
 
