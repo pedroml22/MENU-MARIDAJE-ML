@@ -22,33 +22,51 @@ body {
     background-size: cover;
 }
 
+/* ---------- COPOS (DETRÁS DEL MENÚ) ---------- */
+
+.snowflake {
+    position: fixed;
+    top: -10px;
+    color: white;
+    font-size: 1em;
+    pointer-events: none;
+    animation: snowfall linear infinite;
+    opacity: 0.9;
+    z-index: 0 !important; /* SIEMPRE DETRÁS DEL CONTENIDO */
+}
+
+@keyframes snowfall {
+    0%   { transform: translateY(0) translateX(0); }
+    100% { transform: translateY(110vh) translateX(20px); }
+}
+
 /* ---------- PANTALLA DE BIENVENIDA ---------- */
 
 #welcome-screen {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.75);
-    backdrop-filter: blur(4px);
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    z-index: 1000;
+    z-index: 50;
     color: white;
     text-align: center;
-    animation: fadeIn 1.5s ease;
+    animation: fadeIn 1.2s ease;
 }
 
 #welcome-screen h1 {
     font-family: "Great Vibes", cursive;
-    font-size: 4em;
-    margin-bottom: 20px;
+    font-size: 3.5em;
+    margin-bottom: 25px;
 }
 
 #welcome-screen button {
-    font-size: 1.3em;
-    padding: 12px 22px;
-    border-radius: 10px;
+    font-size: 1.5em;
+    padding: 16px 30px;
+    border-radius: 12px;
     border: none;
     background: #b30000;
     color: white;
@@ -71,15 +89,15 @@ body {
 #content {
     display: none;
     opacity: 0;
-    animation: showMenu 1.2s ease forwards;
+    animation: fadeSlide 0.8s ease forwards;
 }
 
-@keyframes showMenu {
-    from { opacity: 0; transform: translateY(30px); }
+@keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ---------- ESTRUCTURA ---------- */
+/* ---------- ESTRUCTURA GENERAL ---------- */
 
 .page-layout {
     display: flex;
@@ -88,7 +106,7 @@ body {
     padding: 40px 0;
 }
 
-/* ---------- PUBLICIDAD ---------- */
+/* ---------- PUBLICIDAD (SOLO EN PC) ---------- */
 
 .sidebar {
     width: 160px;
@@ -104,7 +122,7 @@ body {
     overflow: hidden;
 
     background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
     box-shadow: 0px 3px 12px rgba(0,0,0,0.20);
 
     animation: fadeInBox 1s ease forwards;
@@ -135,12 +153,14 @@ body {
 
 .menu-container {
     position: relative;
-    max-width: 480px;
+    z-index: 10;
+    max-width: 90%;
     text-align: center;
-    padding: 35px;
-    background: rgba(255,255,255,0.93);
+    padding: 25px;
+    background: rgba(255,255,255,0.92);
     border-radius: 20px;
     box-shadow: 0 0 22px rgba(0,0,0,0.55);
+    margin: 0 10px;
 }
 
 /* ---------- ICONOS ---------- */
@@ -150,9 +170,12 @@ body {
     margin: 15px 0;
 }
 
+/* ---------- DIVIDER ---------- */
 .divider {
     width: 80px;
-    opacity: 0.7;
+    height: 2px;
+    background: rgba(179,0,0,0.5);
+    border-radius: 2px;
     margin: 25px auto;
 }
 
@@ -160,7 +183,7 @@ body {
 
 h1 {
     font-family: "Great Vibes", cursive;
-    font-size: 3.4em;
+    font-size: 3em;
     color: #b30000;
     margin: 0;
 }
@@ -171,43 +194,25 @@ h1 {
 }
 
 h2 {
-    font-size: 1.8em;
+    font-size: 1.7em;
     color: #b30000;
 }
 
-/* ---------- COPOS DE NIEVE ---------- */
+/* ---------- MEJORAS MÓVIL ---------- */
 
-.snowflake {
-    position: fixed;
-    top: -10px;
-    color: white;
-    font-size: 1em;
-    pointer-events: none;
-    animation: snowfall linear infinite;
-    opacity: 0.8;
-}
+@media (max-width: 700px) {
 
-@keyframes snowfall {
-    0%   { transform: translateY(0) translateX(0); }
-    100% { transform: translateY(110vh) translateX(20px); }
-}
-
-/* ---------- RESPONSIVE ---------- */
-
-@media (max-width: 900px) {
-    .page-layout {
-        flex-direction: column;
-        align-items: center;
-    }
     .sidebar {
-        flex-direction: row;
-        flex-wrap: wrap;
-        width: 100%;
-        justify-content: center;
+        display: none; /* OCULTAMOS PUBLICIDAD EN MÓVIL */
     }
-    .ad-box {
-        width: 38%;
-        height: 120px;
+
+    h1 { font-size: 2.5em; }
+    h2 { font-size: 1.5em; }
+    .icon { width: 70px; }
+
+    .menu-container {
+        max-width: 94%;
+        padding: 22px;
     }
 }
 
@@ -233,13 +238,8 @@ function startMenu() {
 
 <div class="page-layout">
 
-    <!-- PUBLICIDAD IZQUIERDA -->
-    <div class="sidebar">
-        <div class="ad-box"><img src="foto1.jpg"></div>
-        <div class="ad-box"><video src="videoplayback2.mp4" autoplay loop muted></video></div>
-        <div class="ad-box"><img src="asia.png"></div>
-        <div class="ad-box"><img src="roscon.png"></div>
-    </div>
+    <!-- SIDEBAR IZQUIERDO VACÍO -->
+    <div class="sidebar"></div>
 
     <!-- MENÚ CENTRAL -->
     <div class="menu-container">
@@ -247,37 +247,39 @@ function startMenu() {
         <h1>Menú Maridaje ML</h1>
         <div class="subtitulo">Una experiencia navideña</div>
 
-        <img class="divider" src="asia.png">
+        <div class="divider"></div>
 
         <!-- PRIMER TIEMPO -->
         <h2>Primer tiempo</h2>
         <img class="icon" src="asia.png">
         <p class="plato">Delicias de Asia</p>
-        <p class="maridaje">cava rosado</p>
+        <p class="maridaje">Cava rosado</p>
 
-        <img class="divider" src="roscon.png">
+        <div class="divider"></div>
 
         <!-- SEGUNDO TIEMPO -->
         <h2>Segundo tiempo</h2>
         <img class="icon" src="cocido.png">
         <p class="plato">Cocido en tres partes</p>
-        <p class="maridaje">cava blanco</p>
+        <p class="maridaje">Cava blanco</p>
 
-        <img class="divider" src="roscon.png">
+        <div class="divider"></div>
 
         <!-- TERCER TIEMPO -->
         <h2>Tercer tiempo</h2>
         <img class="icon" src="roscon.png">
         <p class="plato">Roscón</p>
-        <p class="maridaje">vino</p>
+        <p class="maridaje">Vino</p>
+
+        <div class="divider"></div>
 
     </div>
 
-    <!-- PUBLICIDAD DERECHA -->
+    <!-- PUBLICIDAD DERECHA (SOLO PC) -->
     <div class="sidebar">
         <div class="ad-box"><img src="foto1.jpg"></div>
-        <div class="ad-box"><img src="asia.png"></div>
         <div class="ad-box"><video src="videoplayback2.mp4" autoplay loop muted></video></div>
+        <div class="ad-box"><img src="asia.png"></div>
         <div class="ad-box"><img src="roscon.png"></div>
     </div>
 
@@ -294,7 +296,7 @@ function createSnowflakes() {
 
         snow.style.left = Math.random() * 100 + "vw";
         snow.style.fontSize = (Math.random() * 1.6 + 0.6) + "em";
-        snow.style.animationDuration = (Math.random() * 5 + 5) + "s";
+        snow.style.animationDuration = (Math.random() * 5 + 6) + "s";
         snow.style.animationDelay = (Math.random() * 5) + "s";
 
         document.body.appendChild(snow);
