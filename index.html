@@ -146,14 +146,30 @@ body {
 /* ---------- ICONOS ---------- */
 
 .icon {
-    width: 50px;
-    margin: 10px 0;
+    width: 20px;
+    margin: 5px 0;
     background: white;
-    padding: 8px;
-    border-radius: 12px;
+    padding: 4px;
+    border-radius: 6px;
     box-shadow:
         0 0 10px rgba(0,0,0,0.12),
         inset 0 0 6px rgba(255,255,255,0.7);
+}
+
+/* ---------- TEXTO DE PLATOS Y VINOS ---------- */
+
+.plato {
+    font-size: 1.8em;     /* tamaño grande y elegante */
+    font-weight: 600;
+    margin: 8px 0 4px 0;
+    color: #550000;       /* tono vino suave */
+}
+
+.maridaje {
+    font-size: 1.5em;     /* un poco más pequeño que el plato */
+    font-style: italic;
+    margin-bottom: 15px;
+    color: #7a1a1a;       /* tono vino más claro */
 }
 
 /* ---------- SEPARADORES CON ESTRELLA ---------- */
@@ -262,7 +278,7 @@ function startMenu() {
     <div class="menu-container">
 
         <h1>Menú Maridaje ML</h1>
-        <div class="subtitulo">Un brindis por la familia, por el Año Nuevo y por estar juntos hoy</div>
+        <div class="subtitulo">Un brindis por empezar el año juntos</div>
 
         <div class="divider"></div>
 
@@ -295,7 +311,7 @@ function startMenu() {
 
 <!-- ---------- VÍDEO FINAL ---------- -->
 <div class="video-final">
-    <video src="videoFinal.mp4" autoplay loop muted playsinline></video>
+    <video src="videoplayback.mp4" autoplay loop muted playsinline></video>
 </div>
 
 </div>
