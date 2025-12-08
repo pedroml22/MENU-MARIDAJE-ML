@@ -23,7 +23,7 @@ body {
     background-size: cover;
 }
 
-/* ---------- COPOS (DETRÁS DEL MENÚ) ---------- */
+/* ---------- COPOS ---------- */
 
 .snowflake {
     position: fixed;
@@ -64,7 +64,7 @@ body {
     margin-bottom: 25px;
 }
 
-/* BOTÓN CON BRILLO SUAVE */
+/* BOTÓN BRILLO SUAVE */
 #welcome-screen button {
     font-size: 1.5em;
     padding: 16px 30px;
@@ -84,7 +84,7 @@ body {
     100% { box-shadow: 0 0 8px rgba(255,255,255,0.2); }
 }
 
-/* ---------- TRANSICIÓN DEL MENÚ (CORTINA) ---------- */
+/* ---------- TRANSICIÓN CONTENIDO ---------- */
 
 #content {
     display: none;
@@ -97,7 +97,7 @@ body {
     100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* ---------- ESTRUCTURA ---------- */
+/* ---------- LAYOUT ---------- */
 
 .page-layout {
     display: flex;
@@ -108,7 +108,8 @@ body {
 
 /* ---------- PUBLICIDAD ---------- */
 
-.sidebar {
+.sidebar-left,
+.sidebar-right {
     width: 160px;
     display: flex;
     flex-direction: column;
@@ -125,7 +126,7 @@ body {
     box-shadow: 0px 3px 12px rgba(0,0,0,0.20);
 }
 
-/* ---------- MENÚ CENTRAL + MARCO NAVIDEÑO ---------- */
+/* ---------- MENÚ CENTRAL + MARCO ---------- */
 
 .menu-container {
     position: relative;
@@ -134,11 +135,9 @@ body {
     text-align: center;
     padding: 28px;
     background: rgba(255,255,255,0.92);
-
     border-radius: 22px;
 
-    /* MARCO NAVIDEÑO */
-    border: 6px double rgba(179, 0, 0, 0.75);
+    border: 6px double rgba(179,0,0,0.75);
     box-shadow:
         0 0 10px rgba(255,220,150,0.4),
         0 0 20px rgba(120,0,0,0.4),
@@ -147,51 +146,78 @@ body {
     margin: 0 10px;
 }
 
-/* ---------- ICONOS INTEGRADOS ---------- */
+/* ---------- BRILLO DORADO TÍTULO ---------- */
+
+.shiny-text {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.shiny-text::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,215,130,0.7), transparent);
+    transform: skewX(-20deg);
+    animation: shine 3.2s ease-in-out infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    60% { left: 130%; }
+    100% { left: 130%; }
+}
+
+/* ---------- MENSAJE EMOCIONAL ---------- */
+
+.mensaje-emocional {
+    font-size: 1.1em;
+    margin-top: 8px;
+    color: #7a1a1a;
+    font-style: italic;
+}
+
+/* ---------- ICONOS ---------- */
 
 .icon {
     width: 80px;
     margin: 15px 0;
-
     background: white;
     padding: 10px;
     border-radius: 16px;
-
     box-shadow:
         0 0 10px rgba(0,0,0,0.12),
         inset 0 0 6px rgba(255,255,255,0.7);
 }
 
-/* ---------- DIVIDER ---------- */
+/* ---------- SEPARADOR CON ESTRELLA ---------- */
 
 .divider {
-    width: 80px;
+    position: relative;
+    width: 120px;
     height: 2px;
     background: rgba(179,0,0,0.55);
+    margin: 28px auto;
     border-radius: 2px;
-    margin: 25px auto;
 }
 
-/* ---------- TIPOGRAFÍA ---------- */
-
-h1 {
-    font-family: "Great Vibes", cursive;
-    font-size: 3em;
-    color: #b30000;
-    margin: 0;
-}
-
-.subtitulo {
-    font-size: 1.3em;
-    color: #2e6b2e;
-}
-
-h2 {
-    font-size: 1.7em;
-    color: #b30000;
+.divider::after {
+    content: "★";
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    color: gold;
+    text-shadow: 0 0 6px rgba(255,215,0,0.8);
 }
 
 /* ---------- FOOTER ---------- */
+
 footer {
     margin-top: 35px;
     font-family: "Great Vibes", cursive;
@@ -201,17 +227,17 @@ footer {
     text-shadow: 0 0 10px black;
 }
 
-/* ---------- RESPONSIVE (MÓVIL) ---------- */
+/* ---------- RESPONSIVE MÓVIL ---------- */
 
 @media (max-width: 700px) {
 
-    /* Ocultar sidebar izquierdo para no romper layout */
-    .page-layout > .sidebar:first-child {
-        display: none;
+    /* Ocultar sidebar izquierdo */
+    .sidebar-left {
+        display: none !important;
     }
 
     /* Sidebar derecho debajo del menú */
-    .page-layout > .sidebar:last-child {
+    .sidebar-right {
         width: 100%;
         display: flex;
         flex-direction: row;
@@ -258,12 +284,19 @@ function startMenu() {
 
 <div class="page-layout">
 
-    <div class="sidebar"></div>
+    <!-- SIDEBAR IZQUIERDO (OCULTO EN MÓVIL) -->
+    <div class="sidebar-left"></div>
 
+    <!-- MENÚ CENTRAL -->
     <div class="menu-container">
 
-        <h1>Menú Maridaje ML</h1>
+        <h1 class="shiny-text">Menú Maridaje ML</h1>
+
         <div class="subtitulo">Una experiencia navideña</div>
+
+        <div class="mensaje-emocional">
+            Porque lo mejor de la Navidad es compartirla juntos
+        </div>
 
         <div class="divider"></div>
 
@@ -292,7 +325,8 @@ function startMenu() {
 
     </div>
 
-    <div class="sidebar">
+    <!-- SIDEBAR DERECHO (SE MUEVE DEBAJO EN MÓVIL) -->
+    <div class="sidebar-right">
         <div class="ad-box"><img src="foto1.jpg"></div>
         <div class="ad-box"><video src="videoplayback2.mp4" autoplay loop muted></video></div>
         <div class="ad-box"><img src="asia.png"></div>
@@ -302,7 +336,7 @@ function startMenu() {
 </div>
 </div>
 
-<!-- ---------- COPOS DE NIEVE ---------- -->
+<!-- ---------- COPOS ---------- -->
 <script>
 function createSnowflakes() {
     for (let i = 0; i < 40; i++) {
@@ -315,10 +349,10 @@ function createSnowflakes() {
         snow.style.animationDuration = (Math.random() * 5 + 6) + "s";
         snow.style.animationDelay = (Math.random() * 5) + "s";
 
-        document.body.appendChild(snow);
+        document.body.appendChild(slow);
     }
 }
-createSnowflakes();
+createSnowfl
 </script>
 
 </body>
