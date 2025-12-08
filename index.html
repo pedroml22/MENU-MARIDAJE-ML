@@ -137,7 +137,7 @@ body {
 
     border-radius: 22px;
 
-    /* ⭐ Marco navideño elegante: rojo + dorado suave */
+    /* MARCO NAVIDEÑO */
     border: 6px double rgba(179, 0, 0, 0.75);
     box-shadow:
         0 0 10px rgba(255,220,150,0.4),
@@ -147,22 +147,16 @@ body {
     margin: 0 10px;
 }
 
-/* ---------- ICONOS INTEGRADOS EN EL MENÚ ---------- */
+/* ---------- ICONOS INTEGRADOS ---------- */
 
 .icon {
     width: 80px;
     margin: 15px 0;
 
-    /* ⭐ Fondo blanco suave */
     background: white;
-
-    /* ⭐ Quita el efecto "cuadros transparencia" */
     padding: 10px;
-
-    /* ⭐ Integración elegante */
     border-radius: 16px;
 
-    /* ⭐ Sombras suaves */
     box-shadow:
         0 0 10px rgba(0,0,0,0.12),
         inset 0 0 6px rgba(255,255,255,0.7);
@@ -211,8 +205,13 @@ footer {
 
 @media (max-width: 700px) {
 
-    /* Mostrar fotos al final */
-    .sidebar {
+    /* Ocultar sidebar izquierdo para no romper layout */
+    .page-layout > .sidebar:first-child {
+        display: none;
+    }
+
+    /* Sidebar derecho debajo del menú */
+    .page-layout > .sidebar:last-child {
         width: 100%;
         display: flex;
         flex-direction: row;
@@ -227,13 +226,13 @@ footer {
         margin-bottom: 12px;
     }
 
+    h1 { font-size: 2.4em; }
+    h2 { font-size: 1.4em; }
+    .icon { width: 70px; }
+
     .menu-container {
         max-width: 94%;
         padding: 22px;
-    }
-
-    .icon {
-        width: 70px;
     }
 }
 
