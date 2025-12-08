@@ -46,7 +46,7 @@ body {
     position: fixed;
     inset: 0;
 
-    /* Fondo del menú, pero oscurecido como tú querías */
+    /* Fondo original oscurecido */
     background: rgba(0,0,0,0.68);
     backdrop-filter: blur(4px);
 
@@ -104,7 +104,7 @@ body {
     100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* ---------- LAYOUT ---------- */
+/* ---------- LAYOUT GENERAL ---------- */
 
 .page-layout {
     display: flex;
@@ -187,12 +187,28 @@ footer {
     margin-top: 35px;
     font-family: "Great Vibes", cursive;
     font-size: 1.8em;
-    color: white;
+    color: #b30000; /* mismo color del título */
     text-align: center;
-    text-shadow: 0 0 10px black;
+    text-shadow: none;
 }
 
-/* ---------- RESPONSIVE MÓVIL ---------- */
+/* ---------- VÍDEO FINAL ---------- */
+
+.video-final {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 30px 0 50px 0;
+}
+
+.video-final video {
+    width: 90%;
+    max-width: 480px;
+    border-radius: 16px;
+    box-shadow: 0 0 18px rgba(0,0,0,0.4);
+}
+
+/* ---------- MOBILE RESPONSIVE ---------- */
 
 @media (max-width: 700px) {
     .menu-container {
@@ -265,6 +281,12 @@ function startMenu() {
     </div>
 
 </div>
+
+<!-- ---------- VÍDEO FINAL ---------- -->
+<div class="video-final">
+    <video src="videoFinal.mp4" autoplay loop muted playsinline></video>
+</div>
+
 </div>
 
 <!-- ---------- COPOS ---------- -->
