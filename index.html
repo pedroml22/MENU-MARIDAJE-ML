@@ -26,12 +26,12 @@ body {
 
 .snowflake {
     position: fixed;
-    top: -10px;
+    top: -5px;
     color: white;
     font-size: 0.4em;
     pointer-events: none;
     animation: snowfall linear infinite;
-    opacity: 1;
+    opacity: 0.5;
     z-index: 0 !important;
 }
 
@@ -84,7 +84,18 @@ body {
     color: white;
     cursor: pointer;
     transition: 0.3s;
+
+    /* ⭐ BRILLO BLANCO RESTAURADO */
+    box-shadow: 0 0 12px rgba(255,255,255,0.4);
+    animation: glowWhite 2.4s ease-in-out infinite;
 }
+
+@keyframes glowWhite {
+    0%   { box-shadow: 0 0 8px rgba(255,255,255,0.2); }
+    50%  { box-shadow: 0 0 16px rgba(255,255,255,0.5); }
+    100% { box-shadow: 0 0 8px rgba(255,255,255,0.2); }
+}
+
 
 #welcome-screen button:hover {
     background: #e60000;
