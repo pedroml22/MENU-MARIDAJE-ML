@@ -10,6 +10,62 @@
 
 <style>
 
+/* ---------- VÍDEO FINAL ---------- */
+
+.video-final {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 30px 0 10px 0;
+}
+
+.video-final video {
+    width: 90%;
+    max-width: 480px;
+    border-radius: 16px;
+    box-shadow: 0 0 18px rgba(0,0,0,0.4);
+}
+
+/* ---------- BOTÓN PLAY ---------- */
+
+.video-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    color: white;
+    background: rgba(0,0,0,0.6);
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: 0.3s;
+    z-index: 20;
+}
+
+.video-play-btn:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* ---------- TEXTO BAJO EL VÍDEO ---------- */
+
+.video-text {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
 /* ---------- FONDO GENERAL ---------- */
 
 body {
@@ -311,8 +367,17 @@ function startMenu() {
 
 <!-- ---------- VÍDEO FINAL ---------- -->
 <div class="video-final">
+
+    <!-- Botón de play -->
+    <div class="video-play-btn" onclick="startVid()">
+        ▶
+    </div>
+
     <video id="videoFinal" src="videoplayback.mp4" muted playsinline></video>
 </div>
+
+<!-- Texto final -->
+<div class="video-text">ES HOY, ES HOY !!!</div>
 
 </div>
 
@@ -333,12 +398,15 @@ function createSnowflakes() {
     }
 }
 createSnowflakes();
-const vid = document.getElementById("videoFinal");
+function startVid() {
+    const vid = document.getElementById("videoFinal");
+    const btn = document.querySelector(".video-play-btn");
 
-vid.addEventListener("click", function () {
     vid.play();
     vid.loop = true;
-});
+
+    btn.style.display = "none"; // Oculta el botón al reproducir
+}
 </script>
 
 </body>
