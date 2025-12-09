@@ -34,48 +34,38 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
     font-size: 60px;
     color: white;
-    background: rgba(0,0,0,0.6);
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    backdrop-filter: blur(4px);
-    transition: 0.3s;
-    z-index: 20;
-}
 
-.video-play-btn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    font-size: 60px;
-    color: white;                     /* color del icono ▶ */
-    
-    background: rgba(179,0,0,0.85);   /* ⭐ rojo navideño oscuro */
+    background: rgba(179,0,0,0.85);   /* rojo navideño */
     width: 90px;
     height: 90px;
     border-radius: 50%;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     cursor: pointer;
     backdrop-filter: blur(4px);
     transition: 0.3s;
     z-index: 30;
+
+    /* ⭐ Quitar completamente el efecto azul del móvil */
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
 }
 
 .video-play-btn:hover {
-    background: rgba(255,0,0,0.85);   /* ⭐ rojo más brillante al pasar */
+    background: rgba(255,0,0,0.85);
     transform: translate(-50%, -50%) scale(1.1);
+}
+
+.video-play-btn:focus,
+.video-play-btn:active {
+    outline: none;
+    box-shadow: none;
 }
 
 
@@ -414,11 +404,6 @@ function startMenu() {
     <div class="video-overlay-text">ES HOY, ES HOY !!!</div>
 
     <video id="videoFinal" src="videoplayback.mp4" muted playsinline></video>
-
-</div>
-
-<!-- Texto final -->
-<div class="video-text">ES HOY, ES HOY !!!</div>
 
 </div>
 
