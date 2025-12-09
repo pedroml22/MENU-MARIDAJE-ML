@@ -311,7 +311,7 @@ function startMenu() {
 
 <!-- ---------- VÍDEO FINAL ---------- -->
 <div class="video-final">
-    <video src="videoplayback.mp4" autoplay loop muted playsinline disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback"></video>
+    <video id="videoFinal" src="videoplayback.mp4" muted playsinline></video>
 </div>
 
 </div>
@@ -333,6 +333,12 @@ function createSnowflakes() {
     }
 }
 createSnowflakes();
+const vid = document.getElementById("videoFinal");
+
+vid.addEventListener("click", function () {
+    vid.play();
+    vid.loop = true;
+});
 </script>
 
 </body>
