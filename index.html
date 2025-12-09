@@ -12,6 +12,13 @@
 
 /* ---------- VÍDEO FINAL ---------- */
 
+.play-icon {
+    width: 55px;
+    height: 55px;
+    pointer-events: none;
+}
+
+
 .video-final {
     width: 100%;
     display: flex;
@@ -426,7 +433,12 @@ function startMenu() {
 <!-- ---------- VÍDEO FINAL ---------- -->
 <div class="video-final">
 
-    <div class="video-play-btn" onclick="startVid()">▶</div>
+<div class="video-play-btn" onclick="startVid()">
+    <svg viewBox="0 0 100 100" class="play-icon">
+        <polygon points="35,25 75,50 35,75" fill="white"/>
+    </svg>
+</div>
+
 
     <div class="video-overlay-text">ES HOY, ES HOY !!!</div>
 
