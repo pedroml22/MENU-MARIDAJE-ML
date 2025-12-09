@@ -29,37 +29,64 @@
 
 /* ---------- BOTÓN PLAY ---------- */
 
+/* ---------- BOTÓN PLAY GLOW NAVIDEÑO ---------- */
+
 .video-play-btn {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    font-size: 60px;
-    color: white;
-
-    background: rgba(179,0,0,0.85);   /* rojo navideño */
     width: 90px;
     height: 90px;
     border-radius: 50%;
+
+    background: rgba(255, 0, 0, 0.3); /* rojo translúcido */
+    color: white;
+    font-size: 55px;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
     cursor: pointer;
-    backdrop-filter: blur(4px);
-    transition: 0.3s;
+
+    backdrop-filter: blur(6px);  
+
+    /* Glow navideño luminoso rojo */
+    box-shadow: 
+        0 0 20px rgba(255, 0, 0, 0.8),
+        0 0 35px rgba(255, 60, 60, 0.9),
+        0 0 55px rgba(255, 100, 100, 1);
+
+    animation: glowPulse 2s ease-in-out infinite;
+
     z-index: 30;
 
-    /* ⭐ Quitar completamente el efecto azul del móvil */
+    /* Quitar highlight azul de móviles */
     -webkit-tap-highlight-color: transparent;
     outline: none;
 }
 
-.video-play-btn:hover {
-    background: rgba(255,0,0,0.85);
-    transform: translate(-50%, -50%) scale(1.1);
+@keyframes glowPulse {
+    0% {
+        box-shadow:
+            0 0 20px rgba(255,0,0,0.8),
+            0 0 40px rgba(255,60,60,0.9),
+            0 0 60px rgba(255,100,100,1);
+    }
+    50% {
+        box-shadow:
+            0 0 30px rgba(255,80,80,1),
+            0 0 60px rgba(255,110,110,1),
+            0 0 80px rgba(255,150,150,1);
+    }
+    100% {
+        box-shadow:
+            0 0 20px rgba(255,0,0,0.8),
+            0 0 40px rgba(255,60,60,0.9),
+            0 0 60px rgba(255,100,100,1);
+    }
 }
 
 .video-play-btn:focus,
