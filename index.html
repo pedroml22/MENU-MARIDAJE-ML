@@ -183,23 +183,16 @@ body {
     padding: 14px 28px;
     border-radius: 10px;
     border: none;
-    background: FAD634;
+    background: #FAD643;
     color: black;
     cursor: pointer;
-    transition: 0.3s;
+    transition: transform 0.3s;
 
-    box-shadow: 0 0 12px rgba(255,215,0,0.6);
-    animation: glowGold 2.4s ease-in-out infinite;
+    /* brillo dorado suave */
+    box-shadow: 0 0 14px rgba(212,175,55,0.6);
 }
-
-@keyframes glowGold {
-    0%   { box-shadow: 0 0 8px rgba(255,215,0,0.3); }
-    50%  { box-shadow: 0 0 18px rgba(255,215,0,0.7); }
-    100% { box-shadow: 0 0 8px rgba(255,215,0,0.3); }
-}
-
 #welcome-screen button:hover {
-    background: #ffdd55;
+    background: #e6c766; /* dorado más claro */
     transform: scale(1.05);
 }
 
