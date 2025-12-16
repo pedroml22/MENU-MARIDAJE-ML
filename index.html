@@ -167,9 +167,8 @@ body {
 }
 
 #welcome-screen h1 {
-    font-family: "Great Vibes", cursive;
-    font-size: 3.6em;
-    margin-bottom: 15px;
+    color: gold !important;
+    text-shadow: 0 0 10px rgba(255,215,0,0.8);
 }
 
 .welcome-message {
@@ -185,25 +184,23 @@ body {
     padding: 14px 28px;
     border-radius: 10px;
     border: none;
-    background: #b30000;
-    color: white;
+    background: gold;
+    color: black;
     cursor: pointer;
     transition: 0.3s;
 
-    /* ⭐ BRILLO BLANCO RESTAURADO */
-    box-shadow: 0 0 12px rgba(255,255,255,0.4);
-    animation: glowWhite 2.4s ease-in-out infinite;
+    box-shadow: 0 0 12px rgba(255,215,0,0.6);
+    animation: glowGold 2.4s ease-in-out infinite;
 }
 
-@keyframes glowWhite {
-    0%   { box-shadow: 0 0 8px rgba(255,255,255,0.2); }
-    50%  { box-shadow: 0 0 16px rgba(255,255,255,0.5); }
-    100% { box-shadow: 0 0 8px rgba(255,255,255,0.2); }
+@keyframes glowGold {
+    0%   { box-shadow: 0 0 8px rgba(255,215,0,0.3); }
+    50%  { box-shadow: 0 0 18px rgba(255,215,0,0.7); }
+    100% { box-shadow: 0 0 8px rgba(255,215,0,0.3); }
 }
-
 
 #welcome-screen button:hover {
-    background: #e60000;
+    background: #ffdd55;
     transform: scale(1.05);
 }
 
@@ -255,7 +252,7 @@ body {
     background: rgba(255,255,255,0.80);
     border-radius: 22px;
 
-    border: 6px double rgba(179,0,0,0.75);
+    border: 6px double #2e6b2e;
     box-shadow:
         0 0 10px rgba(255,220,150,0.4),
         0 0 20px rgba(120,0,0,0.4),
@@ -318,8 +315,9 @@ body {
 h1 {
     font-family: "Great Vibes", cursive;
     font-size: 6em;
-    color: #b30000;
+    color: gold;
     margin: 0;
+    text-shadow: 0 0 10px rgba(255,215,0,0.7);
 }
 
 .subtitulo {
